@@ -4,7 +4,7 @@
 #
 Name     : OpenCASCADE
 Version  : 0.18.3
-Release  : 2
+Release  : 3
 URL      : https://github.com/tpaviot/oce/archive/OCE-0.18.3.tar.gz
 Source0  : https://github.com/tpaviot/oce/archive/OCE-0.18.3.tar.gz
 Summary  : No detailed summary available
