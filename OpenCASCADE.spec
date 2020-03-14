@@ -4,10 +4,10 @@
 #
 Name     : OpenCASCADE
 Version  : 0.18.3
-Release  : 5
+Release  : 6
 URL      : https://github.com/tpaviot/oce/archive/OCE-0.18.3.tar.gz
 Source0  : https://github.com/tpaviot/oce/archive/OCE-0.18.3.tar.gz
-Summary  : No detailed summary available
+Summary  : A C++ 3D modeling library
 Group    : Development/Tools
 License  : BSD-3-Clause LGPL-2.1
 Requires: OpenCASCADE-data = %{version}-%{release}
@@ -25,9 +25,12 @@ BuildRequires : python3
 BuildRequires : tcl-dev tk-dev
 
 %description
-This is the OCE unittest framework.
-In order to run tests, you have to compile GoogleTest from the source code
-available in the folder oce/test/gtest-1.6.0
+oce is a C++ 3D modeling library. It can be used to develop CAD/CAM softwares,
+for instance FreeCad or IfcOpenShell. oce stands for **o**pencascade
+**c**ommunity **e**dition. This project aims at gathering patches/ changes/
+improvements from the OCC community. Official OCCT documentation and sources
+are available at http://www.opencascade.org/, you can also theck their
+development portal at http://dev.opencascade.org.
 
 %package data
 Summary: data components for the OpenCASCADE package.
@@ -43,6 +46,7 @@ Group: Development
 Requires: OpenCASCADE-lib = %{version}-%{release}
 Requires: OpenCASCADE-data = %{version}-%{release}
 Provides: OpenCASCADE-devel = %{version}-%{release}
+Requires: OpenCASCADE = %{version}-%{release}
 
 %description dev
 dev components for the OpenCASCADE package.
@@ -68,32 +72,38 @@ license components for the OpenCASCADE package.
 
 %prep
 %setup -q -n oce-OCE-0.18.3
+cd %{_builddir}/oce-OCE-0.18.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1543850803
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1584140182
 mkdir -p clr-build
 pushd clr-build
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 %cmake .. -DOCE_INSTALL_PREFIX=/usr
-make  %{?_smp_mflags}
+make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1543850803
+export SOURCE_DATE_EPOCH=1584140182
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/OpenCASCADE
-cp LICENSE_LGPL_21.txt %{buildroot}/usr/share/package-licenses/OpenCASCADE/LICENSE_LGPL_21.txt
-cp test/gtest-1.7.0/LICENSE %{buildroot}/usr/share/package-licenses/OpenCASCADE/test_gtest-1.7.0_LICENSE
+cp %{_builddir}/oce-OCE-0.18.3/LICENSE_LGPL_21.txt %{buildroot}/usr/share/package-licenses/OpenCASCADE/a64734e065eb3fcf8b3eea74e695bf274048be81
+cp %{_builddir}/oce-OCE-0.18.3/test/gtest-1.7.0/LICENSE %{buildroot}/usr/share/package-licenses/OpenCASCADE/5a2314153eadadc69258a9429104cd11804ea304
 pushd clr-build
 %make_install
 popd
@@ -13245,5 +13255,5 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/OpenCASCADE/LICENSE_LGPL_21.txt
-/usr/share/package-licenses/OpenCASCADE/test_gtest-1.7.0_LICENSE
+/usr/share/package-licenses/OpenCASCADE/5a2314153eadadc69258a9429104cd11804ea304
+/usr/share/package-licenses/OpenCASCADE/a64734e065eb3fcf8b3eea74e695bf274048be81
