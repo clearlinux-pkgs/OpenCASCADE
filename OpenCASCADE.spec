@@ -4,7 +4,7 @@
 #
 Name     : OpenCASCADE
 Version  : 0.18.3
-Release  : 9
+Release  : 10
 URL      : https://github.com/tpaviot/oce/archive/OCE-0.18.3.tar.gz
 Source0  : https://github.com/tpaviot/oce/archive/OCE-0.18.3.tar.gz
 Summary  : A C++ 3D modeling library
@@ -19,7 +19,7 @@ BuildRequires : cmake
 BuildRequires : freetype-dev
 BuildRequires : glibc-dev
 BuildRequires : glu-dev
-BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86misc-dev libXxf86vm-dev
+BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86vm-dev
 BuildRequires : mesa-dev
 BuildRequires : python3
 BuildRequires : tcl-dev tk-dev
