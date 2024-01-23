@@ -1,0 +1,42 @@
+From bf701b60cb826d97b87fdff60b6f01b14acc6917 Mon Sep 17 00:00:00 2001
+From: "Brett T. Warden" <brett.t.warden@intel.com>
+Date: Tue, 23 Jan 2024 11:09:47 -0800
+Subject: [PATCH] Add missing headers
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+/builddir/build/BUILD/opencascade-7.7.0/src/ViewerTest/ViewerTest_CmdParser.cxx:53:80: error: ‘numeric_limits’ is not a member of ‘std’
+   53 | const std::size_t ViewerTest_CmdParser::THE_UNNAMED_COMMAND_OPTION_KEY = (std::numeric_limits<std::size_t>::max)();
+      |                                                                                ^~~~~~~~~~~~~~
+/builddir/build/BUILD/opencascade-7.7.0/src/ViewerTest/ViewerTest_CmdParser.cxx:53:106: error: expected primary-expression before ‘>’ token
+   53 | const std::size_t ViewerTest_CmdParser::THE_UNNAMED_COMMAND_OPTION_KEY = (std::numeric_limits<std::size_t>::max)();
+      |                                                                                                          ^
+/builddir/build/BUILD/opencascade-7.7.0/src/ViewerTest/ViewerTest_CmdParser.cxx:53:109: error: ‘::max’ has not been declared; did you mean ‘std::max’?
+   53 | const std::size_t ViewerTest_CmdParser::THE_UNNAMED_COMMAND_OPTION_KEY = (std::numeric_limits<std::size_t>::max)();
+      |                                                                                                             ^~~
+      |                                                                                                             std::max
+In file included from /usr/lib64/gcc/x86_64-generic-linux/13/../../../../include/c++/13/algorithm:61,
+                 from /builddir/build/BUILD/opencascade-7.7.0/src/ViewerTest/ViewerTest_CmdParser.cxx:22:
+/usr/lib64/gcc/x86_64-generic-linux/13/../../../../include/c++/13/bits/stl_algo.h:5805:5: note: ‘std::max’ declared here
+ 5805 |     max(initializer_list<_Tp> __l, _Compare __comp)
+      |     ^~~
+---
+ src/ViewerTest/ViewerTest_CmdParser.cxx | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/ViewerTest/ViewerTest_CmdParser.cxx b/src/ViewerTest/ViewerTest_CmdParser.cxx
+index 04cb7d4b1cf4..a8619da14425 100755
+--- a/src/ViewerTest/ViewerTest_CmdParser.cxx
++++ b/src/ViewerTest/ViewerTest_CmdParser.cxx
+@@ -21,6 +21,7 @@
+ 
+ #include <algorithm>
+ #include <iostream>
++#include <limits>
+ 
+ namespace
+ {
+-- 
+2.43.0
+
