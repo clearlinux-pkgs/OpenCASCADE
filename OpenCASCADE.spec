@@ -7,7 +7,7 @@
 #
 Name     : OpenCASCADE
 Version  : 7.5.0
-Release  : 15
+Release  : 16
 URL      : https://github.com/tpaviot/oce/releases/download/official-upstream-packages/opencascade-7.5.0.tgz
 Source0  : https://github.com/tpaviot/oce/releases/download/official-upstream-packages/opencascade-7.5.0.tgz
 Summary  : A C++ 3D modeling library
@@ -100,7 +100,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1706056743
+export SOURCE_DATE_EPOCH=1706058637
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -130,7 +130,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1706056743
+export SOURCE_DATE_EPOCH=1706058637
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/OpenCASCADE
 cp %{_builddir}/opencascade-%{version}/LICENSE_LGPL_21.txt %{buildroot}/usr/share/package-licenses/OpenCASCADE/a64734e065eb3fcf8b3eea74e695bf274048be81 || :
