@@ -1,0 +1,1 @@
+sed -i -e 's/\\\${OCCT_INSTALL_BIN_LETTER}//' %{buildroot}/usr/lib/cmake/opencascade/*
